@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Records() {
+  const [myRecords, setMyRecords] = useState(
+    localStorage.getItem("records") ? localStorage.getItem("records") : ""
+  );
   return (
     <>
       {localStorage.getItem("records") ? (
@@ -8,7 +11,7 @@ export default function Records() {
           <div id="recordTable">
             <div id="recordTHead">
               <div id="recordTHeadRow">
-                <div className="recordTHead">Id</div>
+                <div className="recordTHead">Action</div>
                 <div className="recordTHead">Date</div>
                 <div className="recordTHead">Gender</div>
                 <div className="recordTHead">Height</div>
@@ -18,10 +21,45 @@ export default function Records() {
             </div>
 
             <div id="recordTBody">
-              {JSON.parse(localStorage.getItem("records")).map((item, key) => {
+              {JSON.parse(myRecords).map((item, key) => {
                 return (
                   <div className="recordTr" key={key}>
-                    <div className="recordTd">{item.id}</div>
+                    <div className="recordTd">
+                      <span
+                        onClick={() => {
+                          let idWanted = item.id;
+                          if (
+                            window.confirm("Do you want to delete this record?")
+                          ) {
+                            let records = JSON.parse(
+                              localStorage.getItem("records")
+                            );
+                            let wantedRecord = records.findIndex(
+                              (item) => item.id === idWanted
+                            );
+                            if (wantedRecord >= 0) {
+                              console.log(records);
+                              console.log(wantedRecord);
+                              records.splice(wantedRecord, 1);
+                            } else {
+                              alert("There is no record with that id");
+                            }
+                            if (records.length !== 0) {
+                              localStorage.setItem(
+                                "records",
+                                JSON.stringify(records)
+                              );
+                              setMyRecords(JSON.stringify(records));
+                            } else {
+                              localStorage.removeItem("records");
+                              setMyRecords("");
+                            }
+                          }
+                        }}
+                      >
+                        Delete
+                      </span>
+                    </div>
                     <div className="recordTd">{item.date}</div>
                     <div className="recordTd">{item.gender}</div>
                     <div className="recordTd">{item.height}</div>
@@ -32,33 +70,19 @@ export default function Records() {
               })}
             </div>
           </div>
-          <button className="recordButton" onClick={() => {
-            let idWanted = window.prompt("Enter the id of the record you want to delete");
-            if(idWanted){
-              let records = JSON.parse(localStorage.getItem("records"));
-              let wantedRecord = records.findIndex((item) => item.id === idWanted);
-              if(wantedRecord >= 0){
-                console.log(records)
-                console.log(wantedRecord)
-                records.splice(wantedRecord,1)
+          <button
+            className="recordButton"
+            onClick={() => {
+              if (
+                window.confirm("Do you want to delete all the records") === true
+              ) {
+                localStorage.removeItem("records");
+                setMyRecords("");
               }
-              else{
-                alert("There is no record with that id");
-              }
-              if(records.length !== 0){
-                localStorage.setItem("records",JSON.stringify(records));
-              }else{
-                localStorage.removeItem("records")
-              }
-              window.location.reload();
-            }
-          }}>Delete With Id</button>
-          <button className="recordButton" onClick={() => {
-            if(window.confirm("Do you want to delete all the records") === true){
-              localStorage.removeItem("records");
-              window.location.reload();
-            }
-          }}>Delete All</button>
+            }}
+          >
+            Delete All
+          </button>
         </>
       ) : (
         <div style={{ color: "var(--textColor)" }}>

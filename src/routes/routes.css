@@ -319,6 +319,8 @@
   margin:1em 0
 }
 
-.recordButton+.recordButton{
-  margin-left:1em;
+#recordTable span{
+  color:red;
+  text-decoration: underline;
+  cursor: pointer;
 }
