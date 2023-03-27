@@ -1,13 +1,256 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.theme0{
+  --bgColor:#2b2b2b;
+  --asideBg:#000;
+  --textColor:#f4f4f4;
+  --activeNavText:#f4f4f4;
+  --primaryColor:#0051ca;
+  --primaryHover:#002152;
+  --inputBg:#424242;
+  --rangeColor:#d9d9d9;
+  --linkColor:#888;
+  --underWeight:rgb(209, 209, 0);
+  --healthy:#00d13b;
+  --overWeight:rgb(216, 153, 36);
+  --obese:rgb(194, 0, 0);
+  --tableRowOdd: #4b4b4b;
+  --tableRowEven:#363636;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.theme1{
+  --bgColor:#ebebeb;
+  --asideBg:#fff;
+  --textColor:#000;
+  --activeNavText:#fff;
+  --primaryColor:#0051ca;
+  --primaryHover:#87b7ff;
+  --inputBg:#fff;
+  --rangeColor:#000;
+  --underWeight:rgb(242, 242, 144);
+  --healthy:#00d13b;
+  --overWeight:rgb(216, 153, 36);
+  --obese:rgb(194, 0, 0);
+  --tableRowOdd: #cacaca;
+  --tableRowEven:#dfdfdf;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html,body,#root{
+  width: 100%;
+  height:100%;
+  background: var(--bgColor);
+}
+
+.App{
+  display: grid;
+  grid-template-columns: 9fr 31fr;
+  height:100%;
+}
+
+/* Navbar */
+
+aside{
+  background: var(--asideBg);
+  height:100%;
+  display: flex;
+  flex-direction: column;
+}
+
+aside #logo{
+  color:var(--textColor);
+  padding:2.25rem 2rem;
+  flex-shrink: 0;
+  background:var(--asideBg)
+}
+
+aside h1{
+  font-size:1.75em;
+}
+
+aside #logo svg{
+  display: none;
+}
+
+aside section{
+  display: flex;
+  height:100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav a,nav .theme{
+  display: flex;
+  padding:1.25rem 2rem;
+  color:var(--textColor);
+  font-size:1.25em;
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a.active{
+  background: var(--primaryColor);
+  color:var(--activeNavText)
+}
+
+nav a:not(.active):hover, nav .theme:hover{
+  background: var(--primaryHover);
+}
+
+nav svg{
+  padding-top:.1rem;
+  font-size:1.25em;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 1.8em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.mySwitch.round {
+  border-radius: 1em;
+}
+
+.mySwitch.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .mySwitch {
+  background-color: var(--primaryColor);
+}
+
+input:checked + .mySwitch:before {
+  -webkit-transform: translateX(.8em);
+  -ms-transform: translateX(.8em);
+  transform: translateX(.8em);
+  background: #fff;
+}
+
+.mySwitch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.mySwitch:before {
+  position: absolute;
+  content: "";
+  height: .8em;
+  width: .8em;
+  left: .1em;
+  bottom: .1em;
+  background-color: #000;
+  background-size: 100%;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+a#githubLink{
+  text-decoration: none;
+}
+
+#github{
+  color:var(--textColor);
+  padding:2rem;
+  display: flex;
+  align-items: center;
+  gap:1rem;
+}
+
+#github svg{
+  font-size:3em;
+}
+
+#github div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:.25em;
+}
+
+#madeby{
+  font-size:.75em;
+}
+
+#me{
+  font-size:1.25em;
+  font-weight: 700;
+}
+
+
+/* Main */
+
+main{
+  padding:3.5rem;
+}
+
+
+
+
+
+@media screen and (max-width:700px) {
+  .App{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  aside{
+    position: relative;
+    height:auto;
+  }
+
+  aside #logo{
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:2.25rem 1.5rem;
+  }
+
+  aside #logo svg{
+    display: block;
+    font-size:1.5em
+  }
+
+  aside section{
+    position: absolute;
+    width:100%;
+    bottom:0;
+    z-index: 2;
+    height: auto;
+    background: var(--asideBg);
+    transition: .3s;
+  }
+
+  aside nav a,nav .theme{
+    padding:1.25rem 1.5rem;
+  }
+
+  main{
+    padding:1.5rem;
+    overflow: auto;
+    height: 100%;
+  }
 }

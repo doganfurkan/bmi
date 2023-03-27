@@ -1,0 +1,37 @@
+[
+    {
+        "min": 0,
+        "max": 18.5,
+        "tag": "Underweight",
+        "title": "Your score is lower than wanted",
+        "description": "Being underweight can increase your risk for osteoporosis, anemia, hair loss and fertility problems. It can stunt the growth of children and interfere with the functioning of your immune system. If you think you are underweight, check with your doctor to make sure you do not have any underlying health conditions and get advice on how to gain weight safely.",
+        "descSource": "https://healthyeating.sfgate.com/recommendations-someone-underweight-2079.html",
+        "className":"underWeight"
+    },
+    {
+        "min": 18.501,
+        "max": 24.999,
+        "tag": "Healthy",
+        "title": "Your score is normal",
+        "description": "This means that, you are less likely to develop diabetes, heart disease, certain cancers, gallstones, osteoarthritis, breathing problems and sleep apnea",
+        "descSource": "https://www.heart.org/en/healthy-living/healthy-eating/losing-weight/keeping-a-healthy-body-weight",
+        "className":"healthy"
+    },
+    {
+        "min": 25,
+        "max": 29.999,
+        "tag": "Overweight",
+        "title": "Your score is higher than wanted",
+        "description": "You may be a little bit higher than your healthy weight and this doesn't mean it is going to affect your life seriously but it is always better to be more active and fit to avoid serious diseases.",
+        "className":"overWeight"
+    },
+    {
+        "min": 30,
+        "max": 500,
+        "tag": "Obese",
+        "title": "Your score is a lot higher than wanted",
+        "description": "Choosing healthier foods (whole grains, fruits and vegetables, healthy fats and protein sources) and beverages; limiting unhealthy foods (refined grains and sweets, potatoes, red meat, processed meat) and beverages (sugary drinks); increasing physical activity; limiting television time, screen time, and other 'sit time'; improving sleep; and reducing stress can help you get out of the 'obesity' section.",
+        "descSource": "https://www.hsph.harvard.edu/obesity-prevention-source/obesity-prevention/",
+        "className":"obese"
+    }
+]
