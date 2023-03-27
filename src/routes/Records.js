@@ -42,7 +42,14 @@ export default function Records() {
                 console.log(wantedRecord)
                 records.splice(wantedRecord,1)
               }
-              localStorage.setItem("records",JSON.stringify(records));
+              else{
+                alert("There is no record with that id");
+              }
+              if(records.length !== 0){
+                localStorage.setItem("records",JSON.stringify(records));
+              }else{
+                localStorage.removeItem("records")
+              }
               window.location.reload();
             }
           }}>Delete With Id</button>
