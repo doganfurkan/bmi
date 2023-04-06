@@ -24,11 +24,11 @@
   flex-shrink: 0;
 }
 
-#specialSelect {
+.specialSelect {
   position: relative;
 }
 
-#specialSelect select {
+.specialSelect select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -39,10 +39,12 @@
   background-color: var(--inputBg);
   border: none;
   color: inherit;
+  height:100%;
+  width:100%;
   padding: 0.75em 5em 0.75em 1em;
 }
 
-#specialSelect svg {
+.specialSelect svg {
   position: absolute;
   right: 0.75rem;
   top: 50%;
@@ -215,7 +217,7 @@
   }
 
   #calc form .w-h,
-  #calc #specialSelect {
+  #calc .specialSelect {
     order: 2;
   }
 
@@ -258,55 +260,21 @@
 }
 
 /* Records */
-#recordTable {
-  display: table;
-  width: 100%;
-  border-radius: 0.5em;
-  overflow: auto;
-}
-
-#recordTHead {
-  display: table-header-group;
-}
-
-#recordTHeadRow {
-  display: table-row;
-}
-
-.recordTHead {
-  display: table-cell;
-  text-align: center;
-  padding: 0.5em;
-  background: var(--asideBg);
+#recordActions{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
   color: var(--textColor);
-  font-weight: 700;
+  gap:.5rem;
 }
 
-#recordTBody {
-  display: table-row-group;
+#recordActions .specialSelect{
+  flex-shrink: 1;
+  flex-grow: 1;
 }
 
-.recordTr {
-  display: table-row;
-}
-
-.recordTd {
-  display: table-cell;
-  padding: 0.5em 0.75em;
-  text-align: center;
-  color: var(--textColor);
-}
-
-.recordTd:not(:first-child){
-  text-transform: capitalize;
-}
-
-.recordTr:nth-child(2n + 1) .recordTd {
-  background: var(--tableRowOdd);
-}
-
-.recordTr:nth-child(2n) .recordTd {
-  background: var(--tableRowEven);
+#recordActions .specialSelect select{
+  padding-right: 1em;
 }
 
 .recordButton {
@@ -315,12 +283,113 @@
   border: 0;
   color: var(--activeNavText);
   cursor: pointer;
-  font-size: .9em;
-  margin:1em 0
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
-#recordTable span{
-  color:red;
-  text-decoration: underline;
-  cursor: pointer;
+#recordContainer {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  gap:1px;
+}
+
+#recordContainer.newest{
+  flex-direction: column-reverse;
+}
+#recordContainer.oldest{
+  flex-direction: column;
+}
+
+.record {
+  width: 100%;
+}
+
+.recordHeader {
+  width: 100%;
+  padding: 1rem;
+  background: var(--asideBg);
+  color: var(--textColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recordHeader svg{
+  transition:.15s ease-in
+}
+
+.recordHeader.openRecord svg{
+  transform: rotate(180deg);
+}
+
+.recordTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recordScore {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.recordScore.healthy{
+  color: var(--healthy);
+}
+
+.recordScore.underweight{
+  color: var(--underWeight);
+}
+.recordScore.overweight{
+  color: var(--overWeight);
+}
+.recordScore.obese{
+  color: var(--obese);
+}
+
+.recordDate {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.recordBody{
+  background: var(--inputBg);
+  color:var(--textColor);
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.2s ease-out;
+}
+
+.openRecord + .recordBody{
+  max-height: fit-content;
+}
+
+.recordLine{
+  padding:.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recordLine:first-child{
+  margin-top:.5rem;
+}
+
+.lineHeader{
+  font-weight: 300;
+}
+
+.lineContent{
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.deleteButton{
+  width:100%;
+  background: var(--primaryColor);
+  padding:1rem;
+  text-align: center;
+  color:#fff;
+  margin-top:.5rem;
+  font-size:.9em
 }

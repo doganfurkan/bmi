@@ -68,7 +68,6 @@ export default function Calculation() {
     else{
       let myArray = [myRecord];
       let write = JSON.stringify(myArray);
-      console.log(write);
       localStorage.setItem("records",write)
     }
   }
@@ -78,7 +77,7 @@ export default function Calculation() {
       <form onSubmit={calculate}>
         <div>
           <label htmlFor="gender">Gender</label>
-          <div id="specialSelect">
+          <div className="specialSelect">
             <select name="gender" id="gender">
               <option value="female">Female</option>
               <option value="male">Male</option>
