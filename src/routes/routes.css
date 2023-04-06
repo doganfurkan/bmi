@@ -121,6 +121,10 @@
   font-size: 0.75em;
 }
 
+#calc form button:hover,#calc form button:focus{
+  background: var(--primaryHover);
+}
+
 #score {
   display: flex;
   gap: 1em;
@@ -392,6 +396,7 @@
   color: #fff;
   margin-top: 0.5rem;
   font-size: 0.9em;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 700px) {
@@ -406,6 +411,10 @@
 
   #recordActions .specialSelect select {
     padding-right: 5em;
+  }
+
+  .recordButton:hover,.recordButton:focus{
+    background: var(--primaryHover);
   }
 
   .recordBody{
@@ -432,5 +441,9 @@
     width: fit-content;
     padding: 1em 2em;
     margin:0 1rem .5rem auto;
+  }
+
+  .deleteButton:hover,.deleteButton:focus{
+    background: var(--primaryHover);
   }
 }
